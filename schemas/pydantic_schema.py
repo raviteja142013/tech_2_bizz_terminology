@@ -2,6 +2,7 @@
 from typing import List, Optional, Any
 from typing import Literal, Annotated
 from pydantic import BaseModel, Field
+from pydantic.config import ConfigDict
 
 
 # --- Enumerations / Literals ---
@@ -59,13 +60,14 @@ class ColumnMetadata(BaseModel):
     """
     Pydantic model for the provided JSON structure describing column business naming context.
     """
+    model_config = ConfigDict(populate_by_name=True)
 
     # Core identifiers / context
     metadata_id: str
     domain: str
     business_context: str
     system: str
-    schema: str
+    attribute_schema: str
     table: str
     column: str
 
